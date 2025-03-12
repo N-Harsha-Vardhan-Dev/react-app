@@ -1,26 +1,29 @@
 import {useState} from 'react';
 const Content = ()=>{
-    const [name,setName]=useState("Sankar")
-    const handleNameChange = () =>{
-        const nmes = ["Bob", "Alice","John"];
-        const int = Math.floor(Math.random()*3);
-        setName(nmes[int]);
-    }
-    const displayInstructions = () =>{
-        const instructions = ["Click the button to change the name", "Click the button to change the name", "Click the button to change the name"];
-        const int = Math.floor(Math.random()*3);
-        return instructions[int];
-        
-    }
-    const handleClick = (name) =>{
-        console.log(`${name}Button clicked`);
-    }
+    const [items,setItems] =useState([
+        {   id:1,
+            checked: false,
+            item:"Cocova"
+        },
+        {   id:2,
+            checked: false,
+            item:"item2"
+        },
+        {   id:3,
+            checked: false,
+            item:"item3"
+        }
+    ]);
     return (
        <main>
-        <p>Hello {name}</p>
-        <p>{displayInstructions()}</p>
-        <button onClick={() => handleClick("Sankar")}>Click me</button>
-        <button onClick={handleNameChange}>Change Name</button>
+            <ul>
+                {items.map((item)=>(<li className='item' key={item.key}>
+                <input type ="checkbox" checked={item.checked}/>
+                <label>{item.item}</label>
+                <button>Delete</button>
+                </li>
+                ))}
+            </ul>
        </main>
     );
 }
